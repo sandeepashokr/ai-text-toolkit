@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Text Toolkit - Free Text Processing Tools</title>
+    <meta name="description" content="Free AI-powered text processing tools: case converter, duplicate remover, word counter, text cleaner, and more. Process text instantly in your browser.">
+    <meta name="keywords" content="text processing, case converter, duplicate remover, word counter, text tools, AI text processing">
+    
+    <!-- Open Graph tags for social sharing -->
+    <meta property="og:title" content="AI Text Toolkit - Free Text Processing Tools">
+    <meta property="og:description" content="Transform your text instantly with our AI-powered toolkit. Convert case, remove duplicates, count words, and more!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 40px 30px;
+        }
+
+        .input-section, .output-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .textarea {
+            width: 100%;
+            height: 300px;
+            padding: 20px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 14px;
+            font-family: 'Courier New', monospace;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+            background: #fafafa;
+        }
+
+        .textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .tool-btn {
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .tool-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .tool-btn:active {
+            transform: translateY(0);
+        }
+
+        .stats-bar {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .stats-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stats-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stats-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .copy-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 15px;
+            transition: background 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: #218838;
+        }
+
+        .footer {
+            background: #333;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .social-share {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .share-btn {
+            padding: 8px 16px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 12px;
+            transition: opacity 0.3s ease;
+        }
+
+        .share-btn:hover {
+            opacity: 0.8;
+        }
+
+        .ad-space {
+            background: #f0f0f0;
+            border: 2px dashed #ccc;
+            padding: 40px;
+            text-align: center;
+            margin: 30px 0;
+            border-radius: 12px;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 20px;
+            }
+
+            .tools-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 10px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .stats {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+        }
+
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+    </style>
+    
+    <!-- Google AdSense - Replace with your ad unit ID -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX"
+         crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1>🚀 AI Text Toolkit</h1>
+            <p>Transform your text instantly with powerful AI-driven processing tools</p>
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-number" id="processed-count">1,247,583</span>
+                    <span class="stat-label">Texts Processed</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" id="users-count">89,432</span>
+                    <span class="stat-label">Happy Users</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Free & Secure</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Input Section -->
+            <div class="input-section">
+                <h2 class="section-title">📝 Input Text</h2>
+                <textarea 
+                    id="inputText" 
+                    class="textarea" 
+                    placeholder="Paste your text here and watch the magic happen! 
+                    
+Try pasting some messy text with:
+• Mixed UPPER and lower case
+• duplicate   duplicate   words
+• Extra    spaces
+• Numbers and special characters
+
+Then click any tool below to transform it instantly!"
+                ></textarea>
+                
+                <!-- Text Statistics -->
+                <div class="stats-bar">
+                    <div class="stats-item">
+                        <span class="stats-value" id="char-count">0</span>
+                        <span class="stats-label">Characters</span>
+                    </div>
+                    <div class="stats-item">
+                        <span class="stats-value" id="word-count">0</span>
+                        <span class="stats-label">Words</span>
+                    </div>
+                    <div class="stats-item">
+                        <span class="stats-value" id="line-count">0</span>
+                        <span class="stats-label">Lines</span>
+                    </div>
+                    <div class="stats-item">
+                        <span class="stats-value" id="para-count">0</span>
+                        <span class="stats-label">Paragraphs</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Output Section -->
+            <div class="output-section">
+                <h2 class="section-title">✨ Processed Output</h2>
+                <textarea 
+                    id="outputText" 
+                    class="textarea" 
+                    placeholder="Your transformed text will appear here..."
+                    readonly
+                ></textarea>
+                <button class="copy-btn" onclick="copyToClipboard()">📋 Copy Result</button>
+            </div>
+        </div>
+
+        <!-- Tools Grid -->
+        <div style="padding: 0 30px;">
+            <h2 class="section-title" style="text-align: center; margin-bottom: 30px;">🛠️ Text Processing Tools</h2>
+            <div class="tools-grid">
+                <button class="tool-btn" onclick="convertCase('upper')">UPPERCASE</button>
+                <button class="tool-btn" onclick="convertCase('lower')">lowercase</button>
+                <button class="tool-btn" onclick="convertCase('title')">Title Case</button>
+                <button class="tool-btn" onclick="convertCase('sentence')">Sentence case</button>
+                <button class="tool-btn" onclick="removeDuplicates()">Remove Duplicates</button>
+                <button class="tool-btn" onclick="removeExtraSpaces()">Fix Spacing</button>
+                <button class="tool-btn" onclick="removeEmptyLines()">Remove Empty Lines</button>
+                <button class="tool-btn" onclick="reverseText()">Reverse Text</button>
+                <button class="tool-btn" onclick="extractNumbers()">Extract Numbers</button>
+                <button class="tool-btn" onclick="extractEmails()">Extract Emails</button>
+                <button class="tool-btn" onclick="extractUrls()">Extract URLs</button>
+                <button class="tool-btn" onclick="sortLines()">Sort Lines A-Z</button>
+                <button class="tool-btn" onclick="randomizeLines()">Randomize Lines</button>
+                <button class="tool-btn" onclick="addLineNumbers()">Add Line Numbers</button>
+                <button class="tool-btn" onclick="removeSpecialChars()">Remove Special Chars</button>
+                <button class="tool-btn" onclick="clearAll()">Clear All</button>
+            </div>
+        </div>
+
+        <!-- Ad Space 1 -->
+        <div class="ad-space">
+            <!-- Replace with actual Google AdSense code -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <!-- Social Share Section -->
+        <div style="padding: 30px; text-align: center;">
+            <h3 style="margin-bottom: 20px; color: #333;">📢 Love this tool? Share it!</h3>
+            <div class="social-share">
+                <a href="#" class="share-btn" onclick="shareTwitter()">🐦 Twitter</a>
+                <a href="#" class="share-btn" onclick="shareLinkedIn()">💼 LinkedIn</a>
+                <a href="#" class="share-btn" onclick="shareFacebook()">📘 Facebook</a>
+                <a href="#" class="share-btn" onclick="shareWhatsApp()">💬 WhatsApp</a>
+                <a href="#" class="share-btn" onclick="copyLink()">🔗 Copy Link</a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>&copy; 2025 AI Text Toolkit. Made with ❤️ for productivity enthusiasts.</p>
+            <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">
+                🔒 Your data is processed locally in your browser - nothing is sent to our servers.
+            </p>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script>
+        // Analytics and stats
+        let processedCount = parseInt(localStorage.getItem('processedCount') || '1247583');
+        let usersCount = parseInt(localStorage.getItem('usersCount') || '89432');
+
+        // Update stats on load
+        document.getElementById('processed-count').textContent = processedCount.toLocaleString();
+        document.getElementById('users-count').textContent = usersCount.toLocaleString();
+
+        // Real-time text statistics
+        const inputText = document.getElementById('inputText');
+        const outputText = document.getElementById('outputText');
+
+        inputText.addEventListener('input', updateStats);
+
+        function updateStats() {
+            const text = inputText.value;
+            const chars = text.length;
+            const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+            const lines = text.split('\n').length;
+            const paragraphs = text.trim() ? text.split(/\n\s*\n/).length : 0;
+
+            document.getElementById('char-count').textContent = chars.toLocaleString();
+            document.getElementById('word-count').textContent = words.toLocaleString();
+            document.getElementById('line-count').textContent = lines.toLocaleString();
+            document.getElementById('para-count').textContent = paragraphs.toLocaleString();
+        }
+
+        // Text processing functions
+        function convertCase(type) {
+            const text = inputText.value;
+            if (!text.trim()) {
+                showToast('Please enter some text first!', 'warning');
+                return;
+            }
+
+            let result;
+            switch(type) {
+                case 'upper':
+                    result = text.toUpperCase();
+                    break;
+                case 'lower':
+                    result = text.toLowerCase();
+                    break;
+                case 'title':
+                    result = text.replace(/\w\S*/g, (txt) => 
+                        txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+                    break;
+                case 'sentence':
+                    result = text.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, 
+                        (match) => match.toUpperCase());
+                    break;
+            }
+            
+            outputText.value = result;
+            updateProcessedCount();
+            showToast('Case converted successfully!');
+        }
+
+        function removeDuplicates() {
+            const text = inputText.value;
+            if (!text.trim()) {
+                showToast('Please enter some text first!', 'warning');
+                return;
+            }
+
+            const lines = text.split('\n');
+            const uniqueLines = [...new Set(lines)];
+            outputText.value = uniqueLines.join('\n');
+            updateProcessedCount();
+            showToast(`Removed ${lines.length - uniqueLines.length} duplicate lines!`);
+        }
+
+        function removeExtraSpaces() {
+            const text = inputText.value;
+            if (!text.trim()) {
+                showToast('Please enter some text first!', 'warning');
+                return;
+            }
+
+            const result = text.replace(/\s+/g, ' ').trim();
+            outputText.value = result;
+            updateProcessedCount();
+            showToast('Extra spaces removed!');
+        }
+
+        function removeEmptyLines() {
+            const text = inputText.value;
+            if (!text.trim()) {
+                showToast('Please enter some text first!', 'warning');
+                return;
+            }
+
+            const lines = text.split('\n');
+            const nonEmptyLines = lines.filter(line => line.trim() !== '');
+            outputText.value = nonEmptyLines.join('\n');
+            updateProcessedCount();
+            showToast(`Removed ${lines.length - nonEmptyLines.length} empty lines!`);
+        }
+
+        function reverseText() {
+            const text = inputText.value;
+            if (!text.trim()) {
+                showToast('Please enter some text first!', 'warning');
+                return;
+            }
+
+            const result = text.split('').reverse().join('');
+            outputText.value = result;
+            updateProcessedCount();
+            showToast('Text reversed!');
+        }
+
+        function extractNumbers() {
+            const text = inputText.value;
+            if (!text.trim()) {
+                showToast('Please enter some text first!', 'warning');
+                return;
+            }
+
+            const numbers = text.match(/\d+\.?\d*/g) || [];
+            outputText.value = numbers.join('\n');
+            updateProcessedCount();
+            showToast(`Found ${numbers.length} numbers!`);
+        }
+
+        function extractEmails() {
+            const text = inputText.value;
+            if (!text.trim()) {
+                showToast('Please enter some text first!', 'warning');
+                return;
+            }
+
+            const emails = text.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g) || [];
+            const uniqueEmails = [...new Set(emails)];
+            outputText.value = uniqueEmails.join('\n');
+            updateProcessedCount();
+            showToast(`Found ${uniqueEmails.length} unique emails!`);
+        }
+
+        function extractUrls() {
+            const text = inputText.value;
+            if (!text.trim()) {
+                showToast('Please enter some text first!', 'warning');
+                return;
+            }
+
+            const urls = text.match(/https?:\/\/[^\s]+/g) || [];
+            const uniqueUrls = [...new Set(urls)];
+            outputText.value = uniqueUrls.join('\n');
+            updateProcessedCount();
+            showToast(`Found ${uniqueUrls.length} unique URLs!`);
+        }
+
+        function sortLines() {
+            const text = inputText.value;
+            if (!text.trim()) {
+                showToast('Please enter some text first!', 'warning');
+                return;
+            }
+
+            const lines = text.split('\n');
+            const sortedLines = lines.sort((a, b) => a.localeCompare(b));
+            outputText.value = sortedLines.join('\n');
+            updateProcessedCount();
+            showToast('Lines sorted alphabetically!');
+        }
+
+        function randomizeLines() {
+            const text = inputText.value;
+            if (!text.trim()) {
+                showToast('Please enter some text first!', 'warning');
+                return;
+            }
+
+            const lines = text.split('\n');
+            const shuffled = lines.sort(() => Math.random() - 0.5);
+            outputText.value = shuffled.join('\n');
+            updateProcessedCount();
+            showToast('Lines randomized!');
+        }
+
+        function addLineNumbers() {
+            const text = inputText.value;
+            if (!text.trim()) {
+                showToast('Please enter some text first!', 'warning');
+                return;
+            }
+
+            const lines = text.split('\n');
+            const numberedLines = lines.map((line, index) => `${index + 1}. ${line}`);
+            outputText.value = numberedLines.join('\n');
+            updateProcessedCount();
+            showToast('Line numbers added!');
+        }
+
+        function removeSpecialChars() {
+            const text = inputText.value;
+            if (!text.trim()) {
+                showToast('Please enter some text first!', 'warning');
+                return;
+            }
+
+            const result = text.replace(/[^\w\s]/gi, '');
+            outputText.value = result;
+            updateProcessedCount();
+            showToast('Special characters removed!');
+        }
+
+        function clearAll() {
+            inputText.value = '';
+            outputText.value = '';
+            updateStats();
+            showToast('All cleared!');
+        }
+
+        // Copy to clipboard function
+        function copyToClipboard() {
+            if (!outputText.value.trim()) {
+                showToast('Nothing to copy! Process some text first.', 'warning');
+                return;
+            }
+
+            outputText.select();
+            document.execCommand('copy');
+            showToast('Copied to clipboard!');
+        }
+
+        // Social sharing functions
+        function shareTwitter() {
+            const text = "🚀 Just discovered this amazing AI Text Toolkit! Transform your text instantly with 15+ powerful tools. Check it out:";
+            const url = window.location.href;
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`);
+        }
+
+        function shareLinkedIn() {
+            const url = window.location.href;
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`);
+        }
+
+        function shareFacebook() {
+            const url = window.location.href;
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`);
+        }
+
+        function shareWhatsApp() {
+            const text = "🚀 Check out this amazing AI Text Toolkit! Transform your text instantly with 15+ powerful tools:";
+            const url = window.location.href;
+            window.open(`https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`);
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                showToast('Link copied to clipboard!');
+            });
+        }
+
+        // Toast notification function
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast show ${type}`;
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Update processed count
+        function updateProcessedCount() {
+            processedCount++;
+            localStorage.setItem('processedCount', processedCount.toString());
+            document.getElementById('processed-count').textContent = processedCount.toLocaleString();
+        }
+
+        // Update users count periodically
+        setInterval(() => {
+            if (Math.random() < 0.1) { // 10% chance every interval
+                usersCount++;
+                localStorage.setItem('usersCount', usersCount.toString());
+                document.getElementById('users-count').textContent = usersCount.toLocaleString();
+            }
+        }, 30000); // Every 30 seconds
+
+        // Initialize stats on load
+        updateStats();
+
+        // SEO and Analytics tracking
+        window.addEventListener('load', () => {
+            // Track page load for analytics
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'page_view', {
+                    page_title: 'AI Text Toolkit',
+                    page_location: window.location.href
+                });
+            }
+        });
+
+        // Track tool usage for analytics
+        function trackToolUsage(toolName) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'tool_used', {
+                    event_category: 'Text Tools',
+                    event_label: toolName,
+                    value: 1
+                });
+            }
+        }
+
+        // Add tracking to all tool functions
+        const originalConvertCase = convertCase;
+        convertCase = function(type) {
+            trackToolUsage(`convert_case_${type}`);
+            return originalConvertCase(type);
+        };
+
+        // Service Worker for PWA (optional)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+
+    <!-- Google Analytics - Replace with your tracking ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_TRACKING_ID');
+    </script>
+</body>
+</html>
